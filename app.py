@@ -1,4 +1,17 @@
 from flask import Flask, request, jsonify, make_response
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
+		"https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+
+# refer - https://www.geeksforgeeks.org/using-google-sheets-as-database-in-python/
+
+# Assign credentials ann path of style sheet
+creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+client = gspread.authorize(creds)
+sheet = client.open("alt-project-demo").sheet1
+
 
 app = Flask(__name__)
 
@@ -10,7 +23,9 @@ def hello_world():
 
 @app.route('/api/v1/get', methods=['GET'])
 def get_data():
-    return make_response(jsonify({'response': {}, 'message':  'retrieved data'}), 200)
+    data = sheet.get_all_records()
+    print(data)
+    return make_response(jsonify({'response': data, 'message':  'retrieved data'}), 200)
 
 @app.route('/api/v1/get/<id>', methods=['GET'])
 def get_data_by_id(id):
