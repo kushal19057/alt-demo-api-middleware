@@ -2,7 +2,7 @@ cachetools==4.2.4
 certifi==2022.5.18.1
 charset-normalizer==2.0.12
 click==8.0.4
-dataclasses==0.8
+dataclasses
 Flask==2.0.3
 google-auth==2.6.6
 google-auth-oauthlib==0.5.1
