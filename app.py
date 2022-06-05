@@ -30,8 +30,11 @@ def get_data():
 @app.route('/api/v1/get/<id>', methods=['GET'])
 def get_data_by_id(id):
     print(id)
+    # refer docs - https://docs.gspread.org/en/latest/user-guide.html#selecting-a-worksheet
+    # get all records, then filter ...
     data = sheet.get_all_records()
     print(data)
+    # refer list comprehension - https://www.programiz.com/python-programming/list-comprehension
     refined = [row for row in data if row["id"]==int(id)]
     return make_response(jsonify({'response': refined, 'message':  'retrieved data for {}'.format(id)}), 200)
 
@@ -39,6 +42,8 @@ def get_data_by_id(id):
 def post_data():
     data = request.get_json()
     print(data)
+    row = [data["id"], data["name"], data["score"]]  # TODO add error handling
+    sheet.append_row(row)
     return make_response(jsonify({'response': data, 'message': 'inserted data'}), 200)
 
 @app.route('/api/v1/put/<id>', methods=['PUT'])
