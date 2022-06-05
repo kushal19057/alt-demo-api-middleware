@@ -46,6 +46,7 @@ def post_data():
     sheet.append_row(row)
     return make_response(jsonify({'response': data, 'message': 'inserted data'}), 200)
 
+# dummy methods. TODO implement functionality
 @app.route('/api/v1/put/<id>', methods=['PUT'])
 def put_data_by_id(id):
     print(id)
