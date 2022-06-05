@@ -30,7 +30,10 @@ def get_data():
 @app.route('/api/v1/get/<id>', methods=['GET'])
 def get_data_by_id(id):
     print(id)
-    return make_response(jsonify({'response': {}, 'message':  'retrieved data for {}'.format(id)}), 200)
+    data = sheet.get_all_records()
+    print(data)
+    refined = [row for row in data if row["id"]==int(id)]
+    return make_response(jsonify({'response': refined, 'message':  'retrieved data for {}'.format(id)}), 200)
 
 @app.route('/api/v1/post', methods=['POST'])
 def post_data():
