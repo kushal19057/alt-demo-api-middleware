@@ -17,9 +17,10 @@ app = Flask(__name__)
 
 # create API endpoints
 
+# A welcome message to test our server
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    return "<h1>Welcome to our server !!</h1>"
 
 @app.route('/api/v1/get', methods=['GET'])
 def get_data():
@@ -65,3 +66,7 @@ def delete_data_by_id(id):
 # https://www.section.io/engineering-education/flask-crud-api/
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 # test endpoints using postman on localhost
+
+if __name__ == '__main__':
+    # Threaded option to enable multiple instances for multiple user access support
+    app.run(threaded=True, port=5000)
