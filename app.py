@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, make_response
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import os
 
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
 		"https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
@@ -69,4 +70,5 @@ def delete_data_by_id(id):
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
-    app.run(threaded=True, port=5000)
+    port = int(os.getenv('PORT'))
+    app.run(threaded=True, port=port)
