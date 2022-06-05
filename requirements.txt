@@ -96,6 +96,7 @@ googleapis-common-protos @ file:///tmp/build/80754af9/googleapis-common-protos-f
 greenlet @ file:///tmp/build/80754af9/greenlet_1628888132713/work
 grpcio @ file:///tmp/build/80754af9/grpcio_1637590821884/work
 gspread==5.4.0
+gunicorn==20.1.0
 h5py @ file:///tmp/build/80754af9/h5py_1637138488546/work
 HeapDict @ file:///Users/ktietz/demo/mc3/conda-bld/heapdict_1630598515714/work
 holoviews @ file:///opt/conda/conda-bld/holoviews_1645454331194/work
