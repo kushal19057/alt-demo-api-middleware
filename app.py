@@ -72,6 +72,5 @@ def post_data():
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
-    # port = int(os.getenv('PORT'))
-    port = 5000
+    port = int(os.getenv('PORT'))
     app.run(threaded=True, port=port)
