@@ -130,3 +130,6 @@ dmypy.json
 
 # config files
 creds.json
+
+# python env
+fastapi-env/
