@@ -18,13 +18,13 @@ sheet = client.open("alt-project-demo").sheet1
 # define API routes
 @app.get("/")
 async def index():
-    return {"message": "Hi there! Try the GET and POST routes :)"}
+    return {"data": "Hi there! Try the GET and POST routes :)"}
 
 @app.get("/api/v1/get")
 async def get_data():
     data = sheet.get_all_records()
     print(data)
-    return {'response': {"data": data}, 'message':  'success'}
+    return {"data": data}
 
 @app.get("/api/v1/get/{id}")
 async def get_data_by_id(id: int):
@@ -33,7 +33,7 @@ async def get_data_by_id(id: int):
     data = sheet.get_all_records()
     # refer list comprehension - https://www.programiz.com/python-programming/list-comprehension
     refined = [row for row in data if row["id"]==int(id)]
-    return {'response': refined, 'message':  'success'}
+    return {'data': refined}
 
 class User(BaseModel):
     id: int
@@ -42,9 +42,9 @@ class User(BaseModel):
 
 @app.post("/api/v1/post/")
 async def create_data(user: User):
-    row = [user.id, user.name, user.score]  # TODO add error handling
+    row = [user.id, user.name, user.score]  # TODO(kushal19057) | add error handling
     sheet.append_row(row)
-    return {'response': user, 'message': 'success'}
+    return {'data': user}
 
 # references :
 # https://fastapi.tiangolo.com/tutorial/
