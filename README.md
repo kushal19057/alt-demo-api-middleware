@@ -1,2 +1,2 @@
 # alt-demo-api-middleware
-middleware made using flask for alt demo project
+interface for google sheets backend made using fast api and deployed using deta.sh for alt demo project
